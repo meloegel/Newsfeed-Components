@@ -89,7 +89,46 @@ const data = [
 ];
 
 /* Step 1: Create a function that creates a component. You will want your component to look like the template below: 
-  
+*/  
+function componentCreator(dataInfo){
+  const {title, date, firstParagraph, secondParagraph, thirdParagraph} = dataInfo
+  const article = document.createElement('div')
+  const articleTitle = document.createElement('h2')
+  const dateOfArticle = document.createElement('p')
+  const paragraphOne = document.createElement('div')
+  const paragraphTwo = document.createElement('div')
+  const paragraphThree = document.createElement('div')
+  const button = document.createElement('span')
+  article.appendChild(articleTitle)
+  article.appendChild(dateOfArticle)
+  article.appendChild(paragraphOne)
+  article.appendChild(paragraphTwo)
+  article.appendChild(paragraphThree)
+  article.appendChild(button)
+  article.classList.add('article')
+  dateOfArticle.classList.add('date')
+  button.classList.add('expandButton')
+  articleTitle.textContent = title
+  dateOfArticle.textContent = date
+  button.textContent = 'click here'
+  paragraphOne.textContent = firstParagraph
+  paragraphTwo.textContent = secondParagraph
+  paragraphThree.textContent = thirdParagraph
+  button.addEventListener('click', event => {
+    article.classList.toggle('article-open')
+  })
+return article
+}
+
+const newData = data.map(item => {
+  const newArticle = componentCreator(item)
+  document.body.appendChild(newArticle)
+})
+
+addAtricle = componentCreator({ title: 'Title', date: '1/1/2020', firstParagraph: 'The first paragraph', secondParagraph: 'The second paragraph', thirdParagraph: 'The third paragraph' })
+document.body.appendChild(addAtricle)
+
+/*
   <div class="article">
     <h2>{title of the article}</h2>
     <p class="date">{date of the article}</p>
